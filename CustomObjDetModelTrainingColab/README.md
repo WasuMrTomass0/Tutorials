@@ -1,4 +1,4 @@
-# Train your own object detection model with tensorflow and Colab!
+# Train your own object detection model with Tensorflow and Colab!
 
 1. Create custom dataset with labelled images
 2. Open **TrainModel.ipynb** in Colab
