@@ -83,21 +83,6 @@ namespace GP_6_Instrukcja_if
             }
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_ZakresLiczb_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_SprawdzZgadywanie_Click(object sender, EventArgs e)
         {
             // Funkcja sprawdzaj¹ca poprawnoœæ odgadniecia
@@ -169,16 +154,6 @@ namespace GP_6_Instrukcja_if
                 // Ustawienie pozostalych prob na LIMIT PROB
                 lbl_PozostaloProb.Text = limit_prob.ToString();
             }
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_Wynik_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_SprawdzWynik_Click(object sender, EventArgs e)
