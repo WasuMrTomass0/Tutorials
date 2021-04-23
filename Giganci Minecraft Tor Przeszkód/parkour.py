@@ -7,7 +7,8 @@ def nowyParkour():
     # Obracamy nasz konstruktor
     builder.face(EAST)
 
-    for i in range(70):
+    # Liczba określa liczbę stopni - wysokośc naszego toru przeszkód
+    for i in range(85):
         # Stawiamy jeden blok schodów
         builder.place(PURPUR_STAIRS)
         # Przenosimy konstruktor o (1, 1, 0), czyli (x, y, z)
