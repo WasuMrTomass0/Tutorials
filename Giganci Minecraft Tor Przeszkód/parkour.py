@@ -42,6 +42,28 @@ def etap1i2(kierunekKonstruktora, rodzajToru, rodzajCheckpoint):
     # Upewnienie się, że konstruktor zwrócony jest w odpowiednią stronę
     builder.face(EAST)
 
+    for i in range(2):
+        for j in range(5):
+            # Przejdź do przodu o X kroków - X to wylosowana liczba od 3 do 8
+            builder.move(FORWARD, randint(3, 8))
+            # Tworzymy linię od zapamiętanej pozycji do obecnej pozycji
+            # za pomocą bloku rodzajToru
+            builder.line(rodzajToru)
+
+            # Tworzenie przerwy w torze przeszkód
+            # Przejdź do przodu o X kroków - X to wylosowana liczba od 2 do 3
+            builder.move(FORWARD, randint(2, 3))
+            # Oznaczenie nowej pozycji - zostanie użyta do tworzenia lini
+            builder.mark()
+            pass  # Koniec pętli for j
+        # Ustaw konstruktor w wskazanym kierunku (przez argument funkcji "kierunekKonstruktora")
+        builder.turn(kierunekKonstruktora)
+        pass  # Koniec pętli for i
+
+    # Utworzenie platformy za tym etapem
+    builder.mark()
+    builder.shift(2, 0, -4)
+    builder.fill(rodzajCheckpoint)
     pass  # Koniec funkcji etap1i2
 
 # Kod wykonywany przy starcie programu
