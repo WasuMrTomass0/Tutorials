@@ -82,7 +82,7 @@ czyEtap1Utworzono = False
 """
 Podsumowanie użytych bloków:
  - Etap 1: DIAMOND_BLOCK
- - 
+ - Etap 2: GOLD_BLOCK
 """
 # Pętla sterująca ładowaniem kolejnych etapów oraz systemem checkpointów
 while True:
@@ -93,7 +93,7 @@ while True:
         # Zapisanie, ze etap 1 został utworzony
         czyEtap1Utworzono = True
         # Wywołanie funkcji tworzącej etap 1
-        # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        etap1i2(RIGHT_TURN, SLIME_BLOCK, GOLD_BLOCK)
         pass  # Koniec if blocks.test_for_block(DIAMOND_BLOCK, pos(0, -1, 0))
 
     pass  # Koniec pętli while True
