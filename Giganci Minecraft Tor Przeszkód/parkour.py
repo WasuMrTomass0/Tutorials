@@ -110,3 +110,6 @@ while True:
         pass  # Koniec if blocks.test_for_block(GOLD_BLOCK, pos(0, -1, 0))
 
     pass  # Koniec pętli while True
+
+
+
