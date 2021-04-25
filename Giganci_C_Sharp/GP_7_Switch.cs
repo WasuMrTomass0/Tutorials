@@ -70,29 +70,46 @@ namespace GP_8_Switch
 
             // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
             // Wypisaæ u¿ytkownikowi o co go pytamy
-            Console.Write("Podaj numer dnia tygodnia (1-7): ");
-            // Wczytaæ dzieñ tyogdnia od u¿ytkownika
-            int numer_dnia = int.Parse(Console.ReadLine());
-            // Wyœwietlenie odpowiedzi
-
-            switch (numer_dnia)
+            Console.Write("Podaj nazwê dnia tygodnia lub numer dnia tygodnia (1-7): ");
+            // Odczyt odpowiedzi u¿ytkownika
+            string odpowiedz = Console.ReadLine().ToLower();
+            
+            switch (odpowiedz)
             {
-                case 1:
-                    Console.WriteLine("1. dzieñ tygodnia to poniedzia³ek");
-                    break;  // Przerwij wykonywanie kolejnych case'ów
-                case 2:
-                    Console.WriteLine("2. dzieñ tygodnia to wtorek");
+                case "1":
+                case "poniedzia³ek":
+                    Console.WriteLine("1. dzieñ tygodnia to Monday");
                     break;
-                //
-                //
-                //
-                case 7:
-                    Console.WriteLine("7. dzieñ tygodnia to niedziela");
+                case "2":
+                case "wtorek":
+                    Console.WriteLine("2. dzieñ tygodnia to Tuesday");
+                    break;
+                case "3":
+                case "œroda":
+                    Console.WriteLine("3. dzieñ tygodnia to Wednesday");
+                    break;
+                case "4":
+                case "czwartek":
+                    Console.WriteLine("4. dzieñ tygodnia to Thrusday");
+                    break;
+                case "5":
+                case "pi¹tek":
+                    Console.WriteLine("5. dzieñ tygodnia to Friday");
+                    break;
+                case "6":
+                case "sobota":
+                    Console.WriteLine("6. dzieñ tygodnia to Saturday");
+                    break;
+                case "7":
+                case "niedziela":
+                    Console.WriteLine("7. dzieñ tygodnia to Sunday");
                     break;
                 default:
-                    Console.WriteLine("Wprowadzono niepoprawny numer dnia tygodnia.");
+                    Console.WriteLine("Podano nieprawid³owe dane!");
                     break;
             }
+
+            
 
             // Odczytanie znaku, aby konsola siê nie zamknê³a
             Console.ReadKey();
