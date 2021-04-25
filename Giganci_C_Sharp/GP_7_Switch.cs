@@ -68,48 +68,100 @@ namespace GP_8_Switch
             //// Odczytanie znaku, aby konsola siê nie zamknê³a
             //Console.ReadKey();
 
-            // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
-            // Wypisaæ u¿ytkownikowi o co go pytamy
-            Console.Write("Podaj nazwê dnia tygodnia lub numer dnia tygodnia (1-7): ");
-            // Odczyt odpowiedzi u¿ytkownika
-            string odpowiedz = Console.ReadLine().ToLower();
-            
-            switch (odpowiedz)
-            {
-                case "1":
-                case "poniedzia³ek":
-                    Console.WriteLine("1. dzieñ tygodnia to Monday");
-                    break;
-                case "2":
-                case "wtorek":
-                    Console.WriteLine("2. dzieñ tygodnia to Tuesday");
-                    break;
-                case "3":
-                case "œroda":
-                    Console.WriteLine("3. dzieñ tygodnia to Wednesday");
-                    break;
-                case "4":
-                case "czwartek":
-                    Console.WriteLine("4. dzieñ tygodnia to Thrusday");
-                    break;
-                case "5":
-                case "pi¹tek":
-                    Console.WriteLine("5. dzieñ tygodnia to Friday");
-                    break;
-                case "6":
-                case "sobota":
-                    Console.WriteLine("6. dzieñ tygodnia to Saturday");
-                    break;
-                case "7":
-                case "niedziela":
-                    Console.WriteLine("7. dzieñ tygodnia to Sunday");
-                    break;
-                default:
-                    Console.WriteLine("Podano nieprawid³owe dane!");
-                    break;
-            }
+            //// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+            //// Wypisaæ u¿ytkownikowi o co go pytamy
+            //Console.Write("Podaj nazwê dnia tygodnia lub numer dnia tygodnia (1-7): ");
+            //// Odczyt odpowiedzi u¿ytkownika
+            //string odpowiedz = Console.ReadLine().ToLower();
 
-            
+            //switch (odpowiedz)
+            //{
+            //    case "1":
+            //    case "poniedzia³ek":
+            //        Console.WriteLine("1. dzieñ tygodnia to Monday");
+            //        break;
+            //    case "2":
+            //    case "wtorek":
+            //        Console.WriteLine("2. dzieñ tygodnia to Tuesday");
+            //        break;
+            //    case "3":
+            //    case "œroda":
+            //        Console.WriteLine("3. dzieñ tygodnia to Wednesday");
+            //        break;
+            //    case "4":
+            //    case "czwartek":
+            //        Console.WriteLine("4. dzieñ tygodnia to Thrusday");
+            //        break;
+            //    case "5":
+            //    case "pi¹tek":
+            //        Console.WriteLine("5. dzieñ tygodnia to Friday");
+            //        break;
+            //    case "6":
+            //    case "sobota":
+            //        Console.WriteLine("6. dzieñ tygodnia to Saturday");
+            //        break;
+            //    case "7":
+            //    case "niedziela":
+            //        Console.WriteLine("7. dzieñ tygodnia to Sunday");
+            //        break;
+            //    default:
+            //        Console.WriteLine("Podano nieprawid³owe dane!");
+            //        break;
+            //}
+            //// Odczytanie znaku, aby konsola siê nie zamknê³a
+            //Console.ReadKey();
+
+
+            // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+            // miniMenu: 
+            //          pomidor, oliwki, cebula
+            // 
+
+            // Zmienne programu
+            decimal cenaPizzy = 20m;  // Podstawowa cena pizzy
+            bool czyZakonczonoDodatki = false;  // Zmienna okreslaj¹ca, czy zakonczono zamawianie dodatkow do pizzy
+            string odp;  // Utworzenie zmiennej typu string, do której wpiszemy odpowiedz uzytkownika
+            string zamowienie = "";  // Do tej zmiennej wpiszemy wszystkie zamówione pozycje
+
+            // Wypisanie o co pytamy u¿ytkownika
+            Console.Write("Proszê o wskazanie dodatku do pizzy:\npomidor, cebula, oliwki\nNapisz 'napój', aby przejœæ do zamawiania napoi\n");
+
+            // Powtarzaj pytanie o dodatki, jesli nie zakonczono tego etapu
+            while (!czyZakonczonoDodatki)
+            {
+                // Odczytanie odpowiedzi u¿ytkownika i zmiana du¿ych liter na ma³e
+                odp = Console.ReadLine().ToLower();
+
+                switch (odp)
+                {
+                    case "pomidor":
+                        Console.Write("Czy coœ do tego?\n");
+                        cenaPizzy += 2.5m;  // Zwiêkszenie ceny o 2.50
+                        zamowienie += "pomidor\n";  // Dopisanie do zamówienia pomidora
+                        break;
+                    case "cebula":
+                        Console.Write("Czy coœ do tego?\n");
+                        cenaPizzy += 0.5m;  // Zwiêkszenie ceny o 0.50
+                        zamowienie += "cebula\n";  // Dopisanie do zamówienia cebuli
+                        break;
+                    case "oliwki":
+                        Console.Write("Czy coœ do tego?\n");
+                        cenaPizzy += 4.5m;  // Zwiêkszenie ceny o 4.50
+                        zamowienie += "oliwki\n";  // Dopisanie do zamówienia oliwek
+                        break;
+                    case "napój":
+                    case "napoje":
+                        czyZakonczonoDodatki = true;
+                        break;
+                    default:
+                        Console.Write("Nie zrozumia³em. Proszê o wskazanie dodatku do pizzy:\npomidor, cebula, oliwki\n");
+                        break;
+                }
+            }
+            // Wypisanie ³¹cznej ceny pizzy oraz ca³ego zamówienia
+            Console.Write("Koszt pizzy to {0}. Zamówienie:\n{1}", cenaPizzy, zamowienie);
+                       
+
 
             // Odczytanie znaku, aby konsola siê nie zamknê³a
             Console.ReadKey();
