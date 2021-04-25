@@ -119,7 +119,7 @@ namespace GP_8_Switch
 
             // Zmienne programu
             decimal cenaPizzy = 20m;  // Podstawowa cena pizzy
-            bool czyZakonczonoDodatki = false;  // Zmienna okreslaj¹ca, czy zakonczono zamawianie dodatkow do pizzy
+            bool czyZakonczonoZamowienie = false;  // Zmienna okreslaj¹ca, czy zakonczono zamawianie dodatkow do pizzy
             string odp;  // Utworzenie zmiennej typu string, do której wpiszemy odpowiedz uzytkownika
             string zamowienie = "";  // Do tej zmiennej wpiszemy wszystkie zamówione pozycje
 
@@ -127,7 +127,7 @@ namespace GP_8_Switch
             Console.Write("Proszê o wskazanie dodatku do pizzy:\npomidor, cebula, oliwki\nNapisz 'napój', aby przejœæ do zamawiania napoi\n");
 
             // Powtarzaj pytanie o dodatki, jesli nie zakonczono tego etapu
-            while (!czyZakonczonoDodatki)
+            while (!czyZakonczonoZamowienie)
             {
                 // Odczytanie odpowiedzi u¿ytkownika i zmiana du¿ych liter na ma³e
                 odp = Console.ReadLine().ToLower();
@@ -151,15 +151,55 @@ namespace GP_8_Switch
                         break;
                     case "napój":
                     case "napoje":
-                        czyZakonczonoDodatki = true;
+                        czyZakonczonoZamowienie = true;
                         break;
                     default:
                         Console.Write("Nie zrozumia³em. Proszê o wskazanie dodatku do pizzy:\npomidor, cebula, oliwki\n");
                         break;
                 }
             }
+
+            Console.Write("\nJaki napój do tego?\nMamy Cola, Pepsi, Sok, Woda\n");
+            czyZakonczonoZamowienie = false; // Nowe zamowienie
+            while (!czyZakonczonoZamowienie)
+            {
+                // Odczytanie odpowiedzi u¿ytkownika i zmiana du¿ych liter na ma³e
+                odp = Console.ReadLine().ToLower();
+                switch (odp)
+                {
+                    case "cola":
+                        Console.Write("Czy coœ do tego?\n");
+                        cenaPizzy += 5.5m;
+                        zamowienie += "cola\n";
+                        break;
+                    case "pepsi":
+                        Console.Write("Czy coœ do tego?\n");
+                        cenaPizzy += 5.25m;
+                        zamowienie += "pepsi\n";
+                        break;
+                    case "sok":
+                        Console.Write("Czy coœ do tego?\n");
+                        cenaPizzy += 2.5m;
+                        zamowienie += "sok\n";
+                        break;
+                    case "woda":
+                        Console.Write("Czy coœ do tego?\n");
+                        cenaPizzy += 1.5m;
+                        zamowienie += "woda\n";
+                        break;
+                    case "to tyle":
+                    case "koniec":
+                    case "dziêkujê":
+                        czyZakonczonoZamowienie = true;
+                        break;
+                    default:
+                        Console.Write("\nPrzepraszam, nie zrozumia³em.\nJaki napój do tego?\nMamy Cola, Pepsi, Sok, Woda\n");
+                        break;
+                }
+            }
+
             // Wypisanie ³¹cznej ceny pizzy oraz ca³ego zamówienia
-            Console.Write("Koszt pizzy to {0}. Zamówienie:\n{1}", cenaPizzy, zamowienie);
+            Console.Write("\n\nKoszt pizzy to {0}. Zamówienie:\n{1}", cenaPizzy, zamowienie);
                        
 
 
