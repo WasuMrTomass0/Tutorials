@@ -2,7 +2,7 @@
 
 # Budowa schodów, które prowadzą do pierwszego etapu toru przeszkód
 def nowyParkour():
-    # Teleportujemy konstruktor do pozycji (5, 0, 0) obok gracza (względem gracza)    
+    # Teleportujemy konstruktor do pozycji (5, 0, 0) obok gracza (względem gracza)
     builder.teleport_to(pos(5, 0, 0))
     # Obracamy nasz konstruktor
     builder.face(EAST)
@@ -32,7 +32,7 @@ def smierc():
 # Funkcja tworząca etap 1 oraz etap 2
 def etap1i2(kierunekKonstruktora, rodzajToru, rodzajCheckpoint):
     # Argumenty funkcji to:
-    # kierunekKonstruktora - kierunek, w którym będzie się przemieszczać nasz konstruktor
+        # kierunekKonstruktora - kierunek, w którym będzie się przemieszczać nasz konstruktor
     # rodzajToru - blok użyty jako przeszkoda
     # rodzajCheckpoint - blok użyty do stworzenia platformy checkpoint
 
@@ -67,12 +67,73 @@ def etap1i2(kierunekKonstruktora, rodzajToru, rodzajCheckpoint):
     builder.fill(rodzajCheckpoint)
     pass  # Koniec funkcji etap1i2
 
+# Definicja funkcji, ktora odpowiada za utworzenie etapu 3
+def etap3():
+    """
+    # Przypomnienie:
+        pos(x, y, z) -> Stworzenie nowej pozycji
+        w zależności od aktualnej pozycji gracza
+    np. "pos(2, 3, 1)"
+    """
+    # Utworzenie sfery (sfera - kula)
+    shapes.sphere(
+        SLIME_BLOCK,        # Blok z którego zbudowana jest sfera
+        pos(4, -30, 0),     # Współrzędne środka kuli (x,y,z) -> 4 bloki w bok, 30 bloków w dół
+        1,                  # Promień kuli
+        ShapeOperation.REPLACE # Operator wstawiania bloków (zostwiamy domyślny)
+    )
+    # Teleportacja konstruktora
+    builder.teleport_to(pos(6, -32, 0))
+    # Oznaczenie pozycji przez konstruktor (aby utworzyć kolejne bloki/linie/platformy)
+    builder.mark()
+    # Zwrócenie konstruktora w stronę - WSCHÓD
+    builder.face(EAST)
+    # Zapamiętanie pozycji (aby do niej wrócić)
+    builder.set_origin()
+    # Przesuń konstruktor: Do przodu, o 65 bloków
+    builder.move(FORWARD, 65)
+    # Utworzenie lini od obecnej pozycji do pozycji oznaczonej (mark())
+    # za pomocą bloku NETHERRACK
+    builder.line(NETHERRACK)
+    # Teleportacja do miejsca zapamiętanego za pomocą "builder.set_origin()"
+    builder.teleport_to_origin()
+
+    # Przeniesienie konstruktora o jeden blok w górę
+    builder.move(UP, 1)
+    for i in range(11):
+        # Wylosuj liczbe od 3 do 8 i zapisz do zmiennej "przesuniecie"
+        przesuniecie = randint(3, 8)
+        # Przesun konstruktor: Do przodu, o tyle kroków ile jest zapisanych w zmiennej "przesuniecie"
+        builder.move(FORWARD, przesuniecie)
+        # Podpal blok (postaw blok: "ogień")
+        builder.place(FIRE)
+        pass  # Koniec pętli for
+
+    # Ponownie cofamy się do początku lini z netherrocku
+    builder.teleport_to_origin()
+    # Ponownie przesuwamy konstruktor o 65 bloczków
+    builder.move(FORWARD, 65)
+    # Przesunięcie konstruktora o 1 blok w dół
+    builder.move(DOWN, -1)
+    # Oznaczenie aktualnej pozycji
+    builder.mark()
+    # Przesuniecie konstruktora: w x'ach o 2, w y'ach o 0, w z'etach o -4
+    builder.shift(2, 0, -4)
+    # Wypelnienie przestrzeni od obecnej pozycji do pozycji oznaczonej (builder.mark())
+    # za pomocą bloku MOSS_STONE
+    builder.fill(MOSS_STONE)
+    pass  # Koniec funkcji etap3
+
 # Kod wykonywany przy starcie programu
 
 # Przypisanie komendy "start" do wywołania funkcji "nowyParkour"
 player.on_chat("start", nowyParkour)
 # Wywloanie funkcji "smierc" przy kazdej smierci gracza
 player.on_died(smierc)
+
+# FAZA TESTOWANIA - Po teście usunąć poniższą linijkę
+player.on_chat("etap3", etap3)
+
 
 # Aktualne miejsce odrodzenia gracza - zmienia się po osiągnięciu checkpointa
 aktualnaPozycjaOdrodzenia = player.position()
@@ -83,9 +144,9 @@ czyEtap2Utworzono = False
 
 """
 Podsumowanie użytych bloków:
- - Etap 1: DIAMOND_BLOCK
- - Etap 2: GOLD_BLOCK
- - Etap 3: BEDROCK
+    - Etap 1: DIAMOND_BLOCK
+    - Etap 2: GOLD_BLOCK
+    - Etap 3: BEDROCK
 """
 # Pętla sterująca ładowaniem kolejnych etapów oraz systemem checkpointów
 while True:
