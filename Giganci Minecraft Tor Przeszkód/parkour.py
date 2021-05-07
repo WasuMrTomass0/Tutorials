@@ -131,22 +131,20 @@ player.on_chat("start", nowyParkour)
 # Wywloanie funkcji "smierc" przy kazdej smierci gracza
 player.on_died(smierc)
 
-# FAZA TESTOWANIA - Po teście usunąć poniższą linijkę
-player.on_chat("etap3", etap3)
-
-
 # Aktualne miejsce odrodzenia gracza - zmienia się po osiągnięciu checkpointa
 aktualnaPozycjaOdrodzenia = player.position()
 
 # Zmienne pomocnicze. Dzięki nim dany etap będzie tworzony tylko raz
 czyEtap1Utworzono = False
 czyEtap2Utworzono = False
+czyEtap3Utworzono = False
 
 """
 Podsumowanie użytych bloków:
     - Etap 1: DIAMOND_BLOCK
     - Etap 2: GOLD_BLOCK
     - Etap 3: BEDROCK
+    - Etap 4: MOSS_STONE
 """
 # Pętla sterująca ładowaniem kolejnych etapów oraz systemem checkpointów
 while True:
@@ -166,8 +164,18 @@ while True:
         aktualnaPozycjaOdrodzenia = player.position()
         # Zapisanie, ze etap 2 został utworzony
         czyEtap2Utworzono = True
-        # Wywołanie funkcji tworzącej etap 1
+        # Wywołanie funkcji tworzącej etap 2
         etap1i2(LEFT_TURN, MAGENTA_STAINED_GLASS_PANE, BEDROCK)
         pass  # Koniec if blocks.test_for_block(GOLD_BLOCK, pos(0, -1, 0))
+
+    # Sprawdzenie czy blok pod graczem to BEDROCK oraz czy jeszcze nie utworzono etapu 3
+    elif blocks.test_for_block(BEDROCK, pos(0, -1, 0)) and not czyEtap3Utworzono:
+        # Odczytujemy aktualną pozycję gracza i zapisujemy ją jako pozycję odrodzenia
+        aktualnaPozycjaOdrodzenia = player.position()
+        # Zapisanie, ze etap 2 został utworzony
+        czyEtap3Utworzono = True
+        # Wywołanie funkcji tworzącej etap 3
+        etap3()
+        pass  # Koniec if blocks.test_for_block(BEDROCK, pos(0, -1, 0))
 
     pass  # Koniec pętli while True
