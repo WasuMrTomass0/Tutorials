@@ -75,15 +75,18 @@ def etap3():
         w zależności od aktualnej pozycji gracza
     np. "pos(2, 3, 1)"
     """
+    # Odczytanie pozycji gracza
+    pozycjaKuliSzlamu = pos(4, -30, 0)
     # Utworzenie sfery (sfera - kula)
     shapes.sphere(
-        SLIME_BLOCK,        # Blok z którego zbudowana jest sfera
-        pos(4, -30, 0),     # Współrzędne środka kuli (x,y,z) -> 4 bloki w bok, 30 bloków w dół
-        1,                  # Promień kuli
-        ShapeOperation.REPLACE # Operator wstawiania bloków (zostwiamy domyślny)
+        SLIME_BLOCK,            # Blok z którego zbudowana jest sfera
+        pozycjaKuliSzlamu,      # Współrzędne środka kuli -> pozycjaKuliSzlamu
+        1,                      # Promień kuli
+        ShapeOperation.REPLACE  # Operator wstawiania bloków (zostwiamy domyślny)
     )
-    # Teleportacja konstruktora
-    builder.teleport_to(pos(6, -32, 0))
+    # Teleportacja konstruktora oraz przesuniecie
+    builder.teleport_to(pozycjaKuliSzlamu)
+    builder.shift(2, -2, 0)
     # Oznaczenie pozycji przez konstruktor (aby utworzyć kolejne bloki/linie/platformy)
     builder.mark()
     # Zwrócenie konstruktora w stronę - WSCHÓD
@@ -124,6 +127,11 @@ def etap3():
     builder.fill(MOSS_STONE)
     pass  # Koniec funkcji etap3
 
+# Funkcja odpowiedzialna za tworzenie etapu 4
+def etap4():
+
+    pass  # Koniec funkcji etap4
+
 # Kod wykonywany przy starcie programu
 
 # Przypisanie komendy "start" do wywołania funkcji "nowyParkour"
@@ -138,6 +146,7 @@ aktualnaPozycjaOdrodzenia = player.position()
 czyEtap1Utworzono = False
 czyEtap2Utworzono = False
 czyEtap3Utworzono = False
+czyEtap4Utworzono = False
 
 """
 Podsumowanie użytych bloków:
@@ -172,10 +181,20 @@ while True:
     elif blocks.test_for_block(BEDROCK, pos(0, -1, 0)) and not czyEtap3Utworzono:
         # Odczytujemy aktualną pozycję gracza i zapisujemy ją jako pozycję odrodzenia
         aktualnaPozycjaOdrodzenia = player.position()
-        # Zapisanie, ze etap 2 został utworzony
+        # Zapisanie, ze etap 3 został utworzony
         czyEtap3Utworzono = True
         # Wywołanie funkcji tworzącej etap 3
         etap3()
         pass  # Koniec if blocks.test_for_block(BEDROCK, pos(0, -1, 0))
+
+    # Sprawdzenie czy blok pod graczem to MOSS_STONE oraz czy jeszcze nie utworzono etapu 4
+    elif blocks.test_for_block(MOSS_STONE, pos(0, -1, 0)) and not czyEtap4Utworzono:
+        # Odczytujemy aktualną pozycję gracza i zapisujemy ją jako pozycję odrodzenia
+        aktualnaPozycjaOdrodzenia = player.position()
+        # Zapisanie, ze etap 4 został utworzony
+        czyEtap4Utworzono = True
+        # Wywołanie funkcji tworzącej etap 3
+        etap4()
+        pass  # Koniec if blocks.test_for_block(MOSS_STONE, pos(0, -1, 0))
 
     pass  # Koniec pętli while True
