@@ -17,11 +17,6 @@ namespace GP_10_Rozgrzewka_Kalkulator
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Oblicz_Click(object sender, EventArgs e)
         {
             /*
