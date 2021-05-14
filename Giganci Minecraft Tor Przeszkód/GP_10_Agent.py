@@ -52,8 +52,33 @@ def budowanieKolejki(iloscTorow):
             agent.destroy(FORWARD)
             agent.destroy(UP)
             pass  # Koniec instrukcji warunkowej if
+        # Sprawdzamy, czy pod agentem NIE MA bloku
+        elif agent.inspect(AgentInspection.BLOCK, DOWN) == 0:
+            # Ustawienie slotu agenta na trójkę (slot kamienia)
+            # Z tego slotu będą "zabierane" bloczki, które będziemy stawiać
+            agent.set_slot(3)
+            # Postawienie bloku pod agentem
+            agent.place(DOWN)
+            pass  # Koniec elif
+        # Jeżeli nie ma potrzeby usuwania bloków przed i nad agentem,
+        # ani dodawania bloku pod agentem
+        # to oznacza, że miejsce jest gotowe, aby dodać tory
+        else:
+            # Ustawienie slotu zawierającego tory
+            agent.set_slot(1)
+            # Przesunięcie agenta (równoważne z postawieniem bloku 
+            #   - patrz instrukcja "agent.set_assist(PLACE_ON_MOVE, True)")
+            agent.move(FORWARD, 1)
+            # # # 
+            # Zanotowanie, że kolejne tory zostały postawione
+            # Uaktualnienie liczby w zmiennej "aktualnaLiczbaTorow"
+            aktualnaLiczbaTorow += 1
+            pass  # Koniec else
 
         pass  # Koniec pętli while
+
+    # Komunikat na czacie
+    player.say("Budowa torów zakończona")
 
     pass  # Koniec funkcji budowanieKolejki
 
@@ -61,7 +86,8 @@ def budowanieKolejki(iloscTorow):
 # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Miejsce na powiązanie funkcji z komendami, śmierciami gracza, itp
 
-
+# Utworzenie komendy "b" aktywującej funkcję "budowanieKolejki"
+player.on_chat("b", budowanieKolejki)
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # 
