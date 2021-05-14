@@ -46,7 +46,12 @@ def budowanieKolejki(iloscTorow):
     # # Pętla, która działa aż do momentu wybudowania wskazanej
     #   liczby torów (wskazanej przez argument "iloscTorow") # #
     while aktualnaLiczbaTorow < iloscTorow:
-
+        # Sprawdzenie, czy przed agentem lub nad nim znajduje sie jakis blok
+        if agent.detect(AgentDetection.BLOCK, FORWARD) or agent.detect(AgentDetection.BLOCK, UP):
+            # Usuwamy bloki przed agentem i nad nim
+            agent.destroy(FORWARD)
+            agent.destroy(UP)
+            pass  # Koniec instrukcji warunkowej if
 
         pass  # Koniec pętli while
 
