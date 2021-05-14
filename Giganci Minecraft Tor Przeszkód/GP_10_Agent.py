@@ -37,6 +37,19 @@ def budowanieKolejki(iloscTorow):
     # Zmieniamy jedynie jego kierunek - na południe ("patrzy")
     agent.teleport(agent.get_position(), SOUTH)
 
+    # # Ustawienia pracy agenta # #
+    # Stawianie bloków przy każdym ruchu
+    agent.set_assist(PLACE_ON_MOVE, True)
+    # Niszczenie przeszkód (bloków, które stoją na jego drodze)
+    agent.set_assist(DESTROY_OBSTACLES, True)
+
+    # # Pętla, która działa aż do momentu wybudowania wskazanej
+    #   liczby torów (wskazanej przez argument "iloscTorow") # #
+    while aktualnaLiczbaTorow < iloscTorow:
+
+
+        pass  # Koniec pętli while
+
     pass  # Koniec funkcji budowanieKolejki
 
 
