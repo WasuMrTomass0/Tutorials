@@ -30,6 +30,12 @@ def budowanieKolejki(iloscTorow):
 
     # Wywołanie funkcji, która przekaże agentowi wszystkie
     # wszystkie potrzebne materiały
+    uzupelnijBloki()
+
+    # "Teleportacja" agenta
+    # Pozycja agenta nie zmienia się. 
+    # Zmieniamy jedynie jego kierunek - na południe ("patrzy")
+    agent.teleport(agent.get_position(), SOUTH)
 
     pass  # Koniec funkcji budowanieKolejki
 
